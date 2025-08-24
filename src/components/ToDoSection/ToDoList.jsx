@@ -2,14 +2,16 @@
 
 import React, { useEffect, useState } from 'react'
 import { ToDo } from './ToDo';
+import { AddToDo } from './AddToDo';
 
-function ToDoList() {
+export const API_URL = "https://68aa0f3b909a5835049b8c97.mockapi.io/ToDos"; 
 
-const API_URL = "https://68aa0f3b909a5835049b8c97.mockapi.io/ToDos";  
+function ToDoList() { 
 
   const [toDos, setToDos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null); 
+  const [error, setError] = useState(null);
+  const [isHide, setIsHide] = useState(true);
 
   useEffect(()=>{
 
@@ -26,6 +28,18 @@ const API_URL = "https://68aa0f3b909a5835049b8c97.mockapi.io/ToDos";
 
   }, [])
 
+
+
+  const handleAddTask = (toDo) => {
+
+    setToDos(prev => [...prev, toDo]);
+  }
+
+  const handleHideForm = () => {
+
+    setIsHide((prev)=>!prev);
+  }
+
   if(error){
     return <p>{error}</p>
   }
@@ -35,9 +49,15 @@ const API_URL = "https://68aa0f3b909a5835049b8c97.mockapi.io/ToDos";
   }
 
   return (
-    <ul>
-        {toDos.map((item)=> <ToDo key={item.id} toDo={item} />)}
-    </ul>
+    <>
+        <ul>
+            {toDos.map((item)=> <ToDo key={item.id} task={item} />)}
+        </ul>
+        <div>
+            {isHide&&<button onClick={handleHideForm}>Přidej nový úkol</button>}
+        </div>
+        {!isHide&&<AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
+    </>
   )
 }
 

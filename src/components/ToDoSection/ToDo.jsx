@@ -1,25 +1,24 @@
 
 import React from 'react'
 import { useState } from 'react';
+import { API_URL } from './TodoList';
 
-const API_URL = "https://68aa0f3b909a5835049b8c97.mockapi.io/ToDos";
-
-function ToDo({toDo}) {
+function ToDo({task}) {
   
-    const [isCheck, setIsCheck] = useState(toDo.complete);
+    const [isCheck, setIsCheck] = useState(task.completed);
 
 
     const handleComplete = () => {
 
         setIsCheck(prev => !prev);
 
-        fetch(`${API_URL}/${toDo.id}`, {
+        fetch(`${API_URL}/${task.id}`, {
             method: "PUT",
             headers: {"Content-Type":"application/json"},
             body: JSON.stringify({
                 
-                ...toDo,
-                complete: !isCheck
+                ...task,
+                completed: !isCheck
                           
                 })
             })
@@ -29,12 +28,12 @@ function ToDo({toDo}) {
             })
     }
 
-    
+
 
     return (
     <div>
-        <li>{toDo.title} {isCheck ? "✅" : "❌"}</li>
-        <button onClick={()=>handleComplete()}>Check</button>
+        <li>{task.title} {isCheck ? "✅" : "❌"}</li>
+        <button onClick={()=>handleComplete()}>Hotovo</button>
     </div>
   )
 }
