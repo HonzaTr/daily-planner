@@ -9,9 +9,13 @@ export const API_URL = "https://68aa0f3b909a5835049b8c97.mockapi.io/ToDos";
 function ToDoList() { 
 
   const [toDos, setToDos] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(true);
   const [isHide, setIsHide] = useState(true);
+  const [isComplete, setIsComplete] = useState(false);
+
+  console.log("Stav na začátku komponenty:" + toDos.length);
 
   useEffect(()=>{
 
@@ -35,9 +39,32 @@ function ToDoList() {
     setToDos(prev => [...prev, toDo]);
   }
 
+  const handleDeleteTask = (id) => {
+
+    fetch(`${API_URL}/${id}`,{
+        method: "DELETE",
+    })
+    .then((response) => {
+        if(response.ok){
+            
+            setToDos((prev)=>prev.filter((item)=>{
+
+            return id !== item.id;
+            }))
+        }
+    })
+
+  }
+
   const handleHideForm = () => {
 
     setIsHide((prev)=>!prev);
+  }
+
+  const handleChangeList = () => {
+
+    setIsComplete(prev => !prev);
+    
   }
 
   if(error){
@@ -47,19 +74,38 @@ function ToDoList() {
   if(isLoading){
     return <p>Loading...</p>
   }
-
+//{toDos.map((item)=> <ToDo key={item.id} task={item} deleteTask={handleDeleteTask}/>)}
   return (
     <>
         <ul>
-            {toDos.map((item)=> <ToDo key={item.id} task={item} />)}
+            {isComplete?
+                toDos.filter((item)=>(item.completed)).map((item) => <ToDo 
+                                                                        key={item.id}
+                                                                        task={item}
+                                                                        deleteTask={handleDeleteTask}
+                                                                        />)
+                :
+                toDos.filter((item)=>(!item.completed)).map((item) => <ToDo
+                                                                        key={item.id}
+                                                                        task={item}
+                                                                        deleteTask={handleDeleteTask}
+                                                                        />)
+            }
         </ul>
         <div>
-            {isHide&&<button onClick={handleHideForm}>Přidej nový úkol</button>}
+            {isHide && <button onClick={handleHideForm}>Přidej nový úkol</button>}
+            <button onClick={handleChangeList}>{isComplete?"Aktivní úkoly":"Hotové úkoly"}</button>
         </div>
-        {!isHide&&<AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
+        {!isHide && <AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
     </>
   )
 }
 
 export {ToDoList}
 
+/*{toDos.filter((item)=>{
+                if(!item.completed){
+                    return <ToDo key={item.id} task={item} deleteTask={handleDeleteTask}/>
+                }
+            })
+            }*/

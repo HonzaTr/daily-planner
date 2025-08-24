@@ -7,8 +7,13 @@ function AddToDo({addTask, hideForm}) {
   const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
-    console.log("tady je hodnota title z formulare:" + form.title);
+
     e.preventDefault();
+
+    if(!form.title.trim()){
+        setError("Prosím zadej úkol");
+        return
+    }
 
     fetch(API_URL, {
         method:"POST",
@@ -58,7 +63,8 @@ return (
                 onChange={(e)=>setForm((prev)=>({...prev, urgency:e.target.value}))}
             />
         </label>
-        <button>Přidat</button>
+        <button type='submit'>Přidat</button>
+        <button type='button' onClick={hideForm}>Zavřít</button>
         <p style={{color: "red"}}>{error}</p>
     </form>
   )

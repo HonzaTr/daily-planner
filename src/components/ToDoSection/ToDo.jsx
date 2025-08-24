@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 import { API_URL } from './TodoList';
 
-function ToDo({task}) {
+function ToDo({task, deleteTask}) {
   
     const [isCheck, setIsCheck] = useState(task.completed);
 
@@ -28,12 +28,11 @@ function ToDo({task}) {
             })
     }
 
-
-
     return (
     <div>
         <li>{task.title} {isCheck ? "✅" : "❌"}</li>
-        <button onClick={()=>handleComplete()}>Hotovo</button>
+        <button onClick={handleComplete}>{isCheck?"Obnovit":"Hotovo"}</button>
+        <button onClick={() => deleteTask(task.id)}>Smazat</button>
     </div>
   )
 }
