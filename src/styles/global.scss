@@ -1,0 +1,12 @@
+@use "reset.scss" as *;
+@use "mixins.scss" as *;
+@use "variables.scss" as *;
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+.container{
+
+    max-width: 1200px;
+    margin: 0 auto;
+}
