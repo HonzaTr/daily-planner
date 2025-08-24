@@ -15,8 +15,6 @@ function ToDoList() {
   const [isHide, setIsHide] = useState(true);
   const [isComplete, setIsComplete] = useState(false);
 
-  console.log("Stav na začátku komponenty:" + toDos.length);
-
   useEffect(()=>{
 
     fetch(API_URL)
@@ -32,11 +30,10 @@ function ToDoList() {
 
   }, [])
 
-
-
   const handleAddTask = (toDo) => {
 
     setToDos(prev => [...prev, toDo]);
+    setIsComplete(false);
   }
 
   const handleDeleteTask = (id) => {
@@ -53,12 +50,35 @@ function ToDoList() {
             }))
         }
     })
-
   }
+    
+  const handleCompleteTask = (toDo) => {
+
+        const check = !toDo.completed;
+
+        fetch(`${API_URL}/${toDo.id}`, {
+            method: "PUT",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({
+                  
+                ...toDo,
+                completed: check
+                            
+                  })
+              })
+              .then((response)=>{
+                  if(!response.ok) throw new Error("Server error")
+                  return response.json();
+              })
+              .then((updated) => setToDos((prev) => prev.map((item) => (item.id === updated.id ? updated : item))))
+        
+      }
+  
 
   const handleHideForm = () => {
 
     setIsHide((prev)=>!prev);
+
   }
 
   const handleChangeList = () => {
@@ -74,7 +94,7 @@ function ToDoList() {
   if(isLoading){
     return <p>Loading...</p>
   }
-//{toDos.map((item)=> <ToDo key={item.id} task={item} deleteTask={handleDeleteTask}/>)}
+
   return (
     <>
         <ul>
@@ -83,12 +103,14 @@ function ToDoList() {
                                                                         key={item.id}
                                                                         task={item}
                                                                         deleteTask={handleDeleteTask}
+                                                                        completeTask={handleCompleteTask}
                                                                         />)
                 :
                 toDos.filter((item)=>(!item.completed)).map((item) => <ToDo
                                                                         key={item.id}
                                                                         task={item}
                                                                         deleteTask={handleDeleteTask}
+                                                                        completeTask={handleCompleteTask}
                                                                         />)
             }
         </ul>
@@ -102,10 +124,3 @@ function ToDoList() {
 }
 
 export {ToDoList}
-
-/*{toDos.filter((item)=>{
-                if(!item.completed){
-                    return <ToDo key={item.id} task={item} deleteTask={handleDeleteTask}/>
-                }
-            })
-            }*/
