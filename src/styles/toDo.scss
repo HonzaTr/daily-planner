@@ -1,0 +1,63 @@
+@use "_variables.scss" as *;
+
+
+
+.todo-item{
+
+    padding: 20px;
+    display: flex;
+    gap: 50px;
+    justify-content:space-between;
+    border: 1px solid $border-color;
+    border-radius: $card-radius;
+    box-shadow: $shadow;
+    margin-top:10px;
+    font-size: 1.25rem;
+    font-weight: 400;
+
+
+
+    li{
+        list-style-type: none;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;    
+    }
+}
+
+.todo-buttons {
+
+    display: flex;
+    gap: 10px;
+
+    .todo-btn{
+        padding: 5px 10px 5px 10px;
+        border-radius: $button-radius;
+        cursor: pointer;
+        border: none;
+        color: white;
+        font-weight:400;
+        font-size: 1rem;
+        box-shadow: $shadow;
+
+    }
+    
+
+    .todo-btn-state {
+        background-color: $primary-color;
+    }
+
+    .todo-btn-state:hover{
+
+        background-color: darken($primary-color, 10%);
+    }
+
+    .todo-btn-delete {
+        background-color: $terciary-color;
+     }
+
+     .todo-btn-delete:hover {
+        background-color: darken($terciary-color, 10%);
+     }
+
+}

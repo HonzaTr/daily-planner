@@ -1,9 +1,13 @@
 @use "reset.scss" as *;
 @use "mixins.scss" as *;
 @use "variables.scss" as *;
+@use "toDo.scss" as *;
+@use "toDoList.scss" as *;
 
 body{
     font-family: 'Roboto', sans-serif;
+    background-color: $background-color;
+    color: $font-color;
 }
 .container{
 

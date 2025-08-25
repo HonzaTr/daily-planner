@@ -1,0 +1,11 @@
+@use "_variables.scss" as *;
+
+.todo-list{
+
+    padding: 20px;
+    box-shadow: $shadow;
+    width: 50%;
+    border: 1px solid $border-color;
+    border-radius: $card-radius;
+    height: 400px;
+}

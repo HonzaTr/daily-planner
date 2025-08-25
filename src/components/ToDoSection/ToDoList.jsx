@@ -96,7 +96,7 @@ function ToDoList() {
   }
 
   return (
-    <>
+    <div className="todo-list">
         <ul>
             {isComplete?
                 toDos.filter((item)=>(item.completed)).map((item) => <ToDo 
@@ -119,7 +119,7 @@ function ToDoList() {
             <button onClick={handleChangeList}>{isComplete?"Aktivní úkoly":"Hotové úkoly"}</button>
         </div>
         {!isHide && <AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
-    </>
+    </div>
   )
 }
 
