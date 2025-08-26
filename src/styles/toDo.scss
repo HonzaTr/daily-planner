@@ -2,62 +2,107 @@
 
 
 
-.todo-item{
+.todo-item {
 
-    padding: 20px;
+    padding: 20px 15px;
     display: flex;
     gap: 50px;
     justify-content:space-between;
     border: 1px solid $border-color;
     border-radius: $card-radius;
     box-shadow: $shadow;
-    margin-top:10px;
+    margin-bottom:10px;
     font-size: 1.25rem;
     font-weight: 400;
 
-
-
-    li{
+    li {
         list-style-type: none;
         display:flex;
         flex-direction: column;
         justify-content: center;    
     }
+
+    p {
+        font-size: 0.9rem;
+        color: $sec-font-color;
+    }
+
+    &-complete {
+        background-color: $secondary-color;
+    }
+
+
 }
+
+.deadline{
+
+    margin-left: 30px;
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 5px 15px;
+    font-weight: 500;
+
+    &--over{
+
+        color: #f41f1f;
+        border-color: #f41f1f;
+        background-color: #e77c7c;
+    }
+
+    &--today{
+
+        color: #f97316;
+        border-color: #f97316;
+        background-color: #fae4d4;
+    }
+
+    &--tomorrow{
+
+        color: #eab308;
+        border-color:   #eab308;
+        background-color: #ffedba;
+    }
+
+
+}
+
 
 .todo-buttons {
 
     display: flex;
     gap: 10px;
 
-    .todo-btn{
-        padding: 5px 10px 5px 10px;
+    .todo-btn {
+        padding: 10px 10px 10px 10px;
         border-radius: $button-radius;
         cursor: pointer;
         border: none;
         color: white;
         font-weight:400;
         font-size: 1rem;
+        align-self: center;
         box-shadow: $shadow;
+
+        &-state{
+
+            background-color: $primary-color;
+
+                &:hover{
+                    background-color: scale-color($primary-color, $lightness: -10%);
+                }
+        }
+
+        &-delete{
+
+            background-color: $terciary-color;
+    
+            &:hover {
+                background-color: scale-color($terciary-color, $lightness: -10%);
+            }
+
+        }
 
     }
     
-
-    .todo-btn-state {
-        background-color: $primary-color;
-    }
-
-    .todo-btn-state:hover{
-
-        background-color: darken($primary-color, 10%);
-    }
-
-    .todo-btn-delete {
-        background-color: $terciary-color;
-     }
-
-     .todo-btn-delete:hover {
-        background-color: darken($terciary-color, 10%);
-     }
 
 }

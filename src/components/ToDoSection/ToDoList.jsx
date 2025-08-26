@@ -10,6 +10,7 @@ function ToDoList() {
 
   const [toDos, setToDos] = useState([]);
   const [error, setError] = useState(null);
+  const [date, setDate] = useState(new Date);
 
   const [isLoading, setIsLoading] = useState(true);
   const [isHide, setIsHide] = useState(true);
@@ -51,7 +52,7 @@ function ToDoList() {
         }
     })
   }
-    
+
   const handleCompleteTask = (toDo) => {
 
         const check = !toDo.completed;
@@ -87,6 +88,21 @@ function ToDoList() {
     
   }
 
+  const sortToDo = () => {
+
+    const sortedItems = [...toDos];
+
+    sortedItems.sort((a, b) => {
+
+    return new Date(a.deadline) - new Date(b.deadline);
+    
+    })
+
+    return sortedItems;
+  }
+
+
+
   if(error){
     return <p>{error}</p>
   }
@@ -96,8 +112,11 @@ function ToDoList() {
   }
 
   return (
-    <div className="todo-list">
-        <ul>
+    <div className="todo-card">
+        <div>
+            <button onClick={handleChangeList}>{isComplete?"Aktivní úkoly":"Hotové úkoly"}</button>
+        </div>
+        <ul className="todo-list">
             {isComplete?
                 toDos.filter((item)=>(item.completed)).map((item) => <ToDo 
                                                                         key={item.id}
@@ -106,7 +125,7 @@ function ToDoList() {
                                                                         completeTask={handleCompleteTask}
                                                                         />)
                 :
-                toDos.filter((item)=>(!item.completed)).map((item) => <ToDo
+                sortToDo().filter((item)=>(!item.completed)).map((item) => <ToDo
                                                                         key={item.id}
                                                                         task={item}
                                                                         deleteTask={handleDeleteTask}
@@ -114,10 +133,7 @@ function ToDoList() {
                                                                         />)
             }
         </ul>
-        <div>
-            {isHide && <button onClick={handleHideForm}>Přidej nový úkol</button>}
-            <button onClick={handleChangeList}>{isComplete?"Aktivní úkoly":"Hotové úkoly"}</button>
-        </div>
+        {isHide && <button onClick={handleHideForm}>Přidej nový úkol</button>}
         {!isHide && <AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
     </div>
   )
