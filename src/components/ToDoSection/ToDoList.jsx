@@ -112,30 +112,38 @@ function ToDoList() {
   }
 
   return (
-    <div className="todo-card">
-        <div>
-            <button onClick={handleChangeList}>{isComplete?"Aktivní úkoly":"Hotové úkoly"}</button>
-        </div>
-        <ul className="todo-list">
-            {isComplete?
-                toDos.filter((item)=>(item.completed)).map((item) => <ToDo 
+    <>
+      <section className="todo-list">
+          <header className="todo-list-header">
+              <h2>Úkoly</h2>
+              <div className="todo-list-buttons">
+                <button className="todo-list-btn btn-complete" onClick={handleChangeList}>{isComplete?"Aktivní úkoly":"Hotové úkoly"}</button>
+                <button className="todo-list-btn btn-add" onClick={handleHideForm}>+ Přidat úkol</button>
+              </div>
+          </header>
+          <ul className="todo-list-ul">
+              {isComplete?
+                  toDos.filter((item)=>(item.completed)).map((item) => <ToDo 
                                                                         key={item.id}
                                                                         task={item}
                                                                         deleteTask={handleDeleteTask}
                                                                         completeTask={handleCompleteTask}
                                                                         />)
-                :
-                sortToDo().filter((item)=>(!item.completed)).map((item) => <ToDo
+                  :
+                  sortToDo().filter((item)=>(!item.completed)).map((item) => <ToDo
                                                                         key={item.id}
                                                                         task={item}
                                                                         deleteTask={handleDeleteTask}
                                                                         completeTask={handleCompleteTask}
                                                                         />)
-            }
-        </ul>
-        {isHide && <button onClick={handleHideForm}>Přidej nový úkol</button>}
-        {!isHide && <AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
-    </div>
+              }
+          </ul>
+          
+      </section>
+      <div>
+              {!isHide && <AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
+      </div>
+    </>
   )
 }
 

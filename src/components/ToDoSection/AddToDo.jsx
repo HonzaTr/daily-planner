@@ -45,28 +45,35 @@ function AddToDo({addTask, hideForm}) {
   }
   
 return (
-    <form onSubmit={handleSubmit}>
-        <label>
-            Úkol:
-            <input 
-                placeholder={"Např. odeslat e-mail"}
-                value={form.title} 
-                onChange={(e)=>setForm((prev)=>({...prev, title:e.target.value}))}
-            />
-        </label>
-        <label>
-            Deadline:
-            <input 
-                type="date" 
-                min={actualDate()}
-                value={form.deadline}
-                onChange={(e)=>setForm((prev)=>({...prev, deadline:e.target.value}))}
-            />
-        </label>
-        <button type='submit'>Přidat</button>
-        <button type='button' onClick={hideForm}>Zavřít</button>
-        <p style={{color: "red"}}>{error}</p>
-    </form>
+    <section className="add-todo">
+        <header className="add-todo-header">
+            <h2>Přidat úkol</h2>
+        </header>
+        <form onSubmit={handleSubmit}>
+            <label>
+                Úkol:
+                <input 
+                    placeholder={"Např. odeslat e-mail"}
+                    value={form.title} 
+                    onChange={(e)=>setForm((prev)=>({...prev, title:e.target.value}))}
+                />
+            </label>
+            <label>
+                Deadline:
+                <input 
+                    type="date" 
+                    min={actualDate()}
+                    value={form.deadline}
+                    onChange={(e)=>setForm((prev)=>({...prev, deadline:e.target.value}))}
+                />
+            </label>
+            <div className="form-buttons">
+                <button className="form-btn form-btn--add" type="submit">Přidat</button>
+                <button className="form-btn form-btn--close" type="button" onClick={hideForm}>Zavřít</button>
+            </div>
+        </form>
+            <p style={{color: "red", display: "block"}}>{error}</p>
+    </section>
   )
 }
 

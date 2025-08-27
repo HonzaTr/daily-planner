@@ -1,4 +1,5 @@
 @use "_variables.scss" as *;
+@use "sass:color";
 
 
 
@@ -25,10 +26,11 @@
     p {
         font-size: 0.9rem;
         color: $sec-font-color;
+        margin-right: 30px;
     }
 
     &-complete {
-        background-color: $secondary-color;
+        border: 3px solid $secondary-color;
     }
 
 
@@ -36,17 +38,17 @@
 
 .deadline{
 
-    margin-left: 30px;
     border: 1px solid;
     border-radius: 20px;
     padding: 5px 15px;
     font-weight: 500;
+    margin-left: 30px;
 
     &--over{
 
         color: #f41f1f;
         border-color: #f41f1f;
-        background-color: #e77c7c;
+        background-color: #f5adad;
     }
 
     &--today{
@@ -58,9 +60,9 @@
 
     &--tomorrow{
 
-        color: #eab308;
-        border-color:   #eab308;
-        background-color: #ffedba;
+        color: #cd9a02;
+        border-color:   #cd9a02;
+        background-color: #faebc1;
     }
 
 
@@ -73,31 +75,34 @@
     gap: 10px;
 
     .todo-btn {
-        padding: 10px 10px 10px 10px;
+        padding: 10px;
         border-radius: $button-radius;
         cursor: pointer;
-        border: none;
-        color: white;
-        font-weight:400;
+        color: $button-text-color;
+        font-weight:500;
         font-size: 1rem;
         align-self: center;
         box-shadow: $shadow;
 
         &-state{
 
-            background-color: $primary-color;
+            background-color: $background-items-color;
+            border: 1px solid $primary-color;
+            color: $primary-color;
 
                 &:hover{
-                    background-color: scale-color($primary-color, $lightness: -10%);
+                    background-color: color.scale($primary-color, $lightness: 80%);
                 }
         }
 
         &-delete{
 
-            background-color: $terciary-color;
+            background-color: $background-items-color;
+            border: 1px solid $terciary-color;
+            color: $terciary-color;
     
             &:hover {
-                background-color: scale-color($terciary-color, $lightness: -10%);
+                background-color: color.scale($terciary-color, $lightness: 80%);
             }
 
         }

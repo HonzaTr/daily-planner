@@ -1,20 +1,81 @@
 @use "_variables.scss" as *;
+@use "sass:color";
 
-.todo-card{
+.todo-list{
 
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 20px;
     box-shadow: $shadow;
     width: 100%;
     border: 1px solid $border-color;
     border-radius: $card-radius;
     height: 600px;
+    background-color: $background-items-color;
+}
+
+.todo-list-header{
+
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        gap: 30px;
+        margin: 0 20px 20px 20px;
+        align-items: center;
+}
+
+.todo-list-buttons{
+
+    display: flex;
+    gap: 20px;
+
+    .todo-list-btn{
+
+        border-radius: $button-radius;
+        padding: 15px;
+        box-shadow: $shadow;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        background-color: $primary-color;
+        border: 1px solid $primary-color;
+
+    }
+
+    .btn-add{
+
+        background-color: $primary-color;
+        color: $button-text-color;
+        
+        &:hover{
+
+            background-color: color.scale($primary-color, $lightness: 10%);
+        }
+    }
+
+    .btn-complete{
+
+        background-color: $background-items-color;
+        color: $primary-color;
+
+        &:hover{
+
+            background-color: color.scale($primary-color, $lightness: 80%);
+        }
+    }
+
     
 }
 
-.todo-list {
 
-    //padding: 20px;
+
+
+.todo-list-ul {
+
+    padding: 10px 20px;
     overflow: auto;
-    height: 500px;
+    height: 450px;
+    
+    
+    border-bottom: 1px solid $border-color;
+    border-top: 1px solid $border-color;
 }

@@ -1,0 +1,100 @@
+@use "_variables.scss" as *;
+@use "sass:color";
+
+.add-todo{
+
+    border: 1px solid $border-color;
+    border-radius: $card-radius;
+    box-shadow: $shadow;
+
+    padding: 20px;
+    margin: 15px auto;
+    background-color: $background-items-color;
+
+    form{
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 30px 20px 10px 20px;
+
+        input{
+
+            border-radius: $button-radius;
+            border: 1px solid rgb(53, 49, 49);
+            margin-left: 10px;
+            font-weight: 300;
+            color: $sec-font-color;
+
+            &:focus{
+
+                outline: none;
+                color: $font-color;
+            }
+        }
+
+        label{
+
+            font-size: 1.2rem;
+            font-weight: 400;    ;
+        }
+    }
+
+    p{
+
+        min-height: 24px;
+        color: red;
+        padding-left: 20px;
+    }
+
+    
+}
+
+.add-todo-header{
+
+    border-bottom: 1px solid $border-color;
+    padding: 10px 20px 20px;
+
+}
+
+.form-buttons{
+
+    display: flex;
+    gap: 20px;
+}
+
+.form-btn{
+
+    border-radius: $button-radius;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: $background-items-color;
+    cursor: pointer;
+
+    &--add{
+
+        border: 1px solid $primary-color;
+        color: $primary-color;
+        font-weight: 500;
+
+        &:hover{
+
+            background-color: color.scale($primary-color, $lightness: 80%);
+        }
+    }
+
+    &--close{
+
+        border: 1px solid $terciary-color;
+        color: $terciary-color;
+        font-weight: 500;
+
+        &:hover {
+                background-color: color.scale($terciary-color, $lightness: 80%);
+            }
+
+    }
+}
+
+
