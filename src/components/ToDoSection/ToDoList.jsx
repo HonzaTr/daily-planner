@@ -112,7 +112,7 @@ function ToDoList() {
   }
 
   return (
-    <>
+    <div>
       <section className="todo-list">
           <header className="todo-list-header">
               <h2>Úkoly</h2>
@@ -139,11 +139,9 @@ function ToDoList() {
               }
           </ul>
           
-      </section>
-      <div>
-              {!isHide && <AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
+      </section>     
+      {!isHide && <AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
       </div>
-    </>
   )
 }
 

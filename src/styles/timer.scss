@@ -1,0 +1,108 @@
+@use "_variables.scss" as *;
+@use "sass:color";
+
+
+.timer{
+
+    padding: 20px;
+    border: 1px solid $border-color;
+    border-radius: $card-radius;
+    box-shadow: $shadow;
+    background-color: $background-items-color;
+    height: 300px;
+
+    &-header{
+
+        padding: 10px 20px 20px;
+        border-bottom: 1px solid $border-color;
+    }
+
+    &-body{
+
+        display: flex;
+        flex-direction: column;
+        height: 80%;
+        align-items: center;
+        justify-content: center;
+
+        p{
+            font-size: 6rem;
+        }
+    
+        
+        
+    }
+
+    &-btns{
+
+        display: flex;
+        gap: 20px;
+    }
+}
+
+.timer-header{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    p{
+
+        font-size: 1.2rem;
+
+        span{
+
+        display: inline-block;
+        min-width: 60px;
+
+        }
+    }
+
+}
+
+.timer-btn{
+
+    padding: 10px 20px;
+    border-radius: $button-radius;
+    border: none;
+    box-shadow: $shadow;
+    cursor: pointer;
+    font-weight:500;
+    font-size: 1rem;
+    margin-bottom: 20px;
+
+}
+
+.start-btn{
+
+        background-color: $primary-color;
+        border: 1px solid $primary-color;
+        color: $button-text-color;
+        
+        &:hover{
+
+            background-color: color.scale($primary-color, $lightness: 10%);
+        }
+    }
+
+.stop-btn{
+
+    background-color: $background-items-color;
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    
+            &:hover {
+                background-color: color.scale($primary-color, $lightness: 80%);
+            }
+}
+
+.reset-btn{
+
+        background-color: $background-items-color;
+        border: 1px solid $terciary-color;
+        color: $terciary-color;
+    
+            &:hover {
+                background-color: color.scale($terciary-color, $lightness: 80%);
+            }
+}

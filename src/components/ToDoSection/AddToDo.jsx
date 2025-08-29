@@ -50,6 +50,7 @@ return (
             <h2>Přidat úkol</h2>
         </header>
         <form onSubmit={handleSubmit}>
+            <div className="form-inputs">
             <label>
                 Úkol:
                 <input 
@@ -67,12 +68,13 @@ return (
                     onChange={(e)=>setForm((prev)=>({...prev, deadline:e.target.value}))}
                 />
             </label>
+            </div>
             <div className="form-buttons">
                 <button className="form-btn form-btn--add" type="submit">Přidat</button>
                 <button className="form-btn form-btn--close" type="button" onClick={hideForm}>Zavřít</button>
+                <p style={{color: "red", display: "block"}}>{error}</p>
             </div>
         </form>
-            <p style={{color: "red", display: "block"}}>{error}</p>
     </section>
   )
 }

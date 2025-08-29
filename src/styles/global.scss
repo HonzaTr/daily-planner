@@ -4,6 +4,8 @@
 @use "toDo.scss" as *;
 @use "toDoList.scss" as *;
 @use "addToDo.scss" as *;
+@use "timer.scss" as *;
+@use "app.scss" as *;
 
 body{
     font-family: 'Roboto', sans-serif;
