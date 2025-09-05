@@ -48,15 +48,17 @@
 
     p{
 
-        font-size: 1.2rem;
-
-        span{
-
+        font-size: 1rem;
         display: inline-block;
         min-width: 60px;
+        color: $sec-font-color;
+        border-radius: 20px;
+        border: 1px solid $sec-font-color;
+        padding: 5px 15px;
+        background-color: rgb(247, 240, 240);
 
         }
-    }
+    
 
 }
 

@@ -1,0 +1,24 @@
+@use "_variables.scss" as *;
+@use "sass:color";
+
+.weather{
+
+    padding: 20px;
+
+    background-color: $background-items-color;
+    border: 1px solid $border-color;
+    border-radius: $card-radius;
+    box-shadow: $shadow;
+
+    &-header{
+
+        border-bottom: 1px solid $border-color;
+        padding: 10px 20px 20px;
+    }
+
+    &-body{
+
+        padding: 20px;
+    }
+}
+

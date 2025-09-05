@@ -137,8 +137,7 @@ function ToDoList() {
                                                                         completeTask={handleCompleteTask}
                                                                         />)
               }
-          </ul>
-          
+          </ul> 
       </section>     
       {!isHide && <AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
       </div>

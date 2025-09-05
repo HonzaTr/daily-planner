@@ -2,15 +2,14 @@
 import React, { useEffect, useState } from 'react'
 import sound from "../../assets/sound.mp3"
 
-const WORK_TIME = 10;
-const SHORT_BREAK = 5;
-const LONG_BREAK = 8;
+const WORK_TIME = 5;
+const SHORT_BREAK = 2;
+const LONG_BREAK = 3;
 
 function Timer() {
 
     const [time, setTime] = useState(WORK_TIME);
     const [cycle, setCycle] = useState(1);
-    const [phase, setPhase] = useState("");
 
     const [isBreak, setIsBreak] = useState(false);
     const [isRunning, setIsRunning] = useState(false);
@@ -30,24 +29,31 @@ function Timer() {
             setTime(LONG_BREAK);
             setIsBreak(true);
             setIsRunning(false);
-            setCycle(1);                
             return
         }
             
         setTime(SHORT_BREAK);               
         setIsBreak(true);
         setIsRunning(false);
-        setCycle(prev => prev + 1);
         return;
     }
 
     if(time === 0 && isBreak){
             
-            playSound();
-            setTime(WORK_TIME);
-            setIsBreak(false);
-            setIsRunning(false);
-            return;
+            if(cycle === 4){
+                setCycle(1);   
+                playSound();
+                setTime(WORK_TIME);
+                setIsBreak(false);
+                setIsRunning(false);             
+            }else {
+                playSound();
+                setTime(WORK_TIME);
+                setIsBreak(false);
+                setIsRunning(false);
+                setCycle(prev => prev + 1);
+            }
+
     }
 
     const id = setTimeout(()=>{
@@ -63,6 +69,27 @@ function Timer() {
     }
 
     }, [time, isRunning])
+
+const phase = (cycle, isBreak) => {
+
+    if(cycle !== 4 && isBreak){
+
+        return <p>Pauza</p>
+    }
+
+    if((cycle !== 4 && !isBreak) || (cycle === 4 && !isBreak)){
+
+        return <p>Soustředěná práce</p>
+    }
+
+    if(cycle === 4 && isBreak)
+    {
+        return <p>Dlouhá pauza</p>
+    }
+
+    return
+
+}
 
 const playSound = () => {
 
@@ -89,7 +116,6 @@ const getSeconds = (time) => {
 const handleStart = () => {
 
     setIsRunning(true);
-
 }
 
 const handlePause = () => {
@@ -101,6 +127,10 @@ const handleReset = () => {
 
     if(isRunning) return
 
+    if(isBreak){
+        setIsBreak(false);
+    }
+
     setTime(WORK_TIME);
     setCycle(1);
 }
@@ -111,7 +141,7 @@ const handleReset = () => {
     <section className="timer">
         <header className="timer-header">
             <h2>Časovač</h2>
-            <p>Probíhající fáze: <span>{phase}</span></p>
+            {phase(cycle, isBreak)}
 
         </header>
         <div className="timer-body">
