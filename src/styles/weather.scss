@@ -22,3 +22,31 @@
     }
 }
 
+.weather-icon{
+
+        width: 50%;
+        height: auto;
+    }
+
+.weather-button{
+
+    padding: 10px;
+    border-radius: $button-radius;
+    border: none;
+    cursor: pointer;
+    color: $button-text-color;
+    background-color: $primary-color;
+    margin: 0 auto;
+    font-weight:500;
+    font-size: 1rem;
+    align-self: center;
+    box-shadow: $shadow;
+
+    &:hover{
+
+        background-color: color.scale($primary-color, $lightness: 10%);
+    }
+}
+
+
+
