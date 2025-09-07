@@ -46,9 +46,6 @@ function AddToDo({addTask, hideForm}) {
   
 return (
     <section className="add-todo">
-        <header className="add-todo-header">
-            <h2>Přidat úkol</h2>
-        </header>
         <form onSubmit={handleSubmit}>
             <div className="form-inputs">
             <label>

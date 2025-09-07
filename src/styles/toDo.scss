@@ -113,3 +113,49 @@
     
 
 }
+
+@media (max-width: 1030px){
+
+    .todo-item{
+
+        flex-direction: column;
+        align-items: start;
+        gap: 8px;
+
+        li{
+
+            width: 100%;
+            min-width: 0;
+        }
+    }
+
+}
+
+
+@media (max-width: 767px){
+
+    .todo-item{
+
+        h4{
+
+            font-size: 1.05rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        p{
+
+            font-size: 0.9rem;
+            padding-top: 6px;
+        }
+    }
+
+    .todo-btn {
+
+        padding: 8px 12px;
+        font-size: 0.9rem;
+  }
+
+    
+}

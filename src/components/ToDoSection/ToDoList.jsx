@@ -112,8 +112,8 @@ function ToDoList() {
   }
 
   return (
-    <div>
-      <section className="todo-list">
+      <section className="todo-section">
+        <div className="todo-list">
           <header className="todo-list-header">
               <h2>Úkoly</h2>
               <div className="todo-list-buttons">
@@ -137,10 +137,15 @@ function ToDoList() {
                                                                         completeTask={handleCompleteTask}
                                                                         />)
               }
-          </ul> 
+          </ul>
+          {!isHide && (
+          <div className="addtodo-panel">
+            <AddToDo addTask={handleAddTask} hideForm={handleHideForm} />
+          </div>
+          )}
+          </div> 
       </section>     
-      {!isHide && <AddToDo addTask={handleAddTask} hideForm={handleHideForm}/>}
-      </div>
+      
   )
 }
 

@@ -73,7 +73,7 @@ function Weather() {
         },
         (error) => {
 
-            setErrLocation("Bez polohy nemůžu ukázat aktuální počasí.");
+            setErrLocation("Povol sledování polohy v prohlížeči");
             console.log(errLocation);
         }
 
@@ -83,12 +83,8 @@ function Weather() {
     const getWeatherIndex = () => {
 
         const hours = time.getHours();
-
-        if(hours === 0){
-            return 23;
-        }
         
-        return hours - 1;
+        return hours;
     }
 
     const actualWeather = () => {
@@ -97,8 +93,8 @@ function Weather() {
 
             return(
 
-                <div>
-                    <img className="weather-icon" src="src\assets\sun.svg"/>
+                <div className="weather-body-icon">
+                    <img src="src\assets\sun.svg"/>
                     <p>Jasno</p>
                 </div>
             )
@@ -108,8 +104,8 @@ function Weather() {
 
             return(
 
-                <div>
-                    <img className="weather-icon" src="src\assets\cloud-sun.svg"/>
+                <div className="weather-body-icon">
+                    <img src="src\assets\cloud-sun.svg"/>
                     <p>Polojasno</p>
                 </div>
             )
@@ -118,8 +114,8 @@ function Weather() {
 
             return(
 
-                <div>
-                    <img className="weather-icon" src="src\assets\cloud.svg"/>
+                <div className="weather-body-icon">
+                    <img src="src\assets\cloud.svg"/>
                     <p>Zataženo</p>
                 </div>
             )
@@ -129,8 +125,8 @@ function Weather() {
 
             return(
 
-                <div>
-                    <img className="weather-icon" src="src\assets\cloud.svg"/>
+                <div className="weather-body-icon">
+                    <img src="src\assets\cloud.svg"/>
                     <p>Mlha</p>
                 </div>
             )
@@ -140,8 +136,8 @@ function Weather() {
 
             return(
 
-                <div>
-                    <img className="weather-icon" src="src\assets\cloud-drizzle.svg"/>
+                <div className="weather-body-icon">
+                    <img src="src\assets\cloud-drizzle.svg"/>
                     <p>Mrholení</p>
                 </div>
             )
@@ -151,8 +147,8 @@ function Weather() {
 
             return(
 
-                <div>
-                    <img className="weather-icon" src="src\assets\cloud-rain.svg"/>
+                <div className="weather-body-icon">
+                    <img src="src\assets\cloud-rain.svg"/>
                     <p>Déšť</p>
                 </div>
             )
@@ -162,8 +158,8 @@ function Weather() {
 
             return(
 
-                <div>
-                    <img className="weather-icon" src="src\assets\cloud-snow.svg"/>
+                <div className="weather-body-icon">
+                    <img src="src\assets\cloud-snow.svg"/>
                     <p>Sněžení</p>
                 </div>
             )
@@ -173,8 +169,8 @@ function Weather() {
 
             return(
 
-                <div>
-                    <img className="weather-icon" src="src\assets\cloud-sun-rain.svg"/>
+                <div className="weather-body-icon">
+                    <img src="src\assets\cloud-sun-rain.svg"/>
                     <p>Přeháňky</p>
                 </div>
             )
@@ -184,8 +180,8 @@ function Weather() {
 
             return(
 
-                <div>
-                    <img className="weather-icon" src="src\assets\sun-snow.svg"/>
+                <div className="weather-body-icon">
+                    <img src="src\assets\sun-snow.svg"/>
                     <p>Sněhové přeháňky</p>
                 </div>
             )
@@ -195,8 +191,8 @@ function Weather() {
 
             return(
 
-                <div>
-                    <img className="weather-icon" src="src\assets\cloud-drizzle.svg"/>
+                <div className="weather-body-icon">
+                    <img src="src\assets\cloud-drizzle.svg"/>
                     <p>Bouřky</p>
                 </div>
             )
@@ -221,22 +217,27 @@ function Weather() {
     }
     
     console.log(time.getHours());
+    console.log(location);
 
     return (
-        <section className="weather">
-            <header className="weather-header">
+        <section className="weather-section">
+            <div className="weather-card">
+            <header className="weather-card-header">
                 <h2>Dnešní počasí</h2>
             </header>
-            <div className="weather-body">
-                <div className="weather-body-info">
-                    <p>{location.city}</p>
-                    <p>{Math.round(weather.hourly.temperature_2m[getWeatherIndex()])} °C</p>
-                    <p>{Math.round(weather.hourly.wind_speed_10m[getWeatherIndex()])} km/h</p>
-                </div>
+            <div className="weather-card-body">
                 {actualWeather()}
+                <div className="weather-body-info">
+                    <p className="city-text">{location.city} ({location.countryCode})</p>
+                    <p className="temperature-text">{Math.round(weather.hourly.temperature_2m[getWeatherIndex()])}°C</p>
+                    <p className="wind-text">{Math.round(weather.hourly.wind_speed_10m[getWeatherIndex()])} km/h</p>
+                </div>
             </div>
-            <button className="weather-button" onClick={handleLocation}>Aktuální poloha</button>
-            <p style={{color:"red"}}>{errLocation ? `${errLocation}` : ""}</p>   
+            <div className="weather-button-area">
+                <p style={{color:"red", height:"24px", margin: "10px 0 0 0"}}>{errLocation ? `${errLocation}` : ""}</p>
+                <button className="weather-button" onClick={handleLocation}>Aktuální poloha</button>
+            </div>
+            </div>   
         </section>   
   )
 }

@@ -108,3 +108,20 @@
                 background-color: color.scale($terciary-color, $lightness: 80%);
             }
 }
+
+@media (max-width: 900px){
+
+    .timer{
+
+        height: auto;
+        padding: 16px;
+    }
+
+    .timer-header{
+
+        padding: 8px 12px 12px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+}

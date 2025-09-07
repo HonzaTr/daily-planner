@@ -1,52 +1,143 @@
 @use "_variables.scss" as *;
 @use "sass:color";
 
-.weather{
+
+.weather-section{
+
+    margin-top: 20px;
+}
+
+.weather-card{
 
     padding: 20px;
-
+    width: 100%;
     background-color: $background-items-color;
     border: 1px solid $border-color;
     border-radius: $card-radius;
     box-shadow: $shadow;
 
-    &-header{
+}
+
+.weather-card-header{
 
         border-bottom: 1px solid $border-color;
         padding: 10px 20px 20px;
     }
 
-    &-body{
+.weather-card-body{
 
-        padding: 20px;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
 
-.weather-icon{
+.weather-body-icon{
 
         width: 50%;
-        height: auto;
+        padding-left: 20px;
+
+        img{
+
+            width: 50%;
+            height: auto;
+        }
+
+        p{
+
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        
     }
+
+.weather-body-info{
+
+    width: 50%;
+    padding-left: 30px;
+
+    .temperature-text{
+
+        font-size: 2.5rem;
+        color: $terciary-color;
+    }
+
+    .city-text{
+
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    .wind-text{
+
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &::before{
+
+            content: "";
+            background-image: url("src/assets/wi-strong-wind.svg");
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+}
 
 .weather-button{
 
     padding: 10px;
     border-radius: $button-radius;
-    border: none;
+    border: 1px solid $primary-color;
+    box-shadow: $shadow;
+
     cursor: pointer;
-    color: $button-text-color;
-    background-color: $primary-color;
-    margin: 0 auto;
+    
+
     font-weight:500;
     font-size: 1rem;
-    align-self: center;
-    box-shadow: $shadow;
+
+   
+    background-color: $primary-color;
+    color: $button-text-color;
 
     &:hover{
 
         background-color: color.scale($primary-color, $lightness: 10%);
     }
+    
 }
+
+.weather-button-area{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 767px){
+
+    .weather-card {
+        padding: 12px;
+
+        h3{
+            font-size: 1rem; 
+        }
+
+        .weather-card-header{
+
+            text-align: center;
+        }
+    }
+}
+
+
 
 
 

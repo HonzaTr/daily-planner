@@ -15,8 +15,10 @@ function App() {
   <div className="container">
     <div className="app-body">
       <ToDoList />
-      <Timer />
-      <Weather />
+      <div className="app-timer-weather">
+        <Timer />
+        <Weather />
+      </div>
     </div>
   </div>
   )

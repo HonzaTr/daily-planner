@@ -3,11 +3,6 @@
 
 .add-todo{
 
-    border: 1px solid $border-color;
-    border-radius: $card-radius;
-    box-shadow: $shadow;
-
-    padding: 20px;
     margin: 15px 0px;
     background-color: $background-items-color;
 
@@ -57,12 +52,11 @@
 .form-inputs{
 
     display: flex;
-    justify-content: space-between;
+    gap: 50px;
 }
 
 .add-todo-header{
 
-    border-bottom: 1px solid $border-color;
     padding: 10px 20px 20px;
 
 }
@@ -107,5 +101,20 @@
 
     }
 }
+
+@media (max-width: 830px){
+
+    .form-inputs{
+
+        flex-direction: column;
+        gap: 10px;
+        width: 50%;
+
+    }
+}
+
+
+
+
 
 

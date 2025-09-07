@@ -2,10 +2,42 @@
 @use "sass:color";
 
 
-
 .app-body{
-
-    /*display: flex;
+    
+    display: flex;
+    align-items: stretch;
     margin-top: 50px;
-    gap: 50px;*/
+    gap: 20px;
+}
+
+.todo-section{
+
+    width: 60%;
+}
+
+.app-timer-weather{
+
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 767px){
+
+    .app-body{
+
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 24px;
+    }
+
+    .todo-section{
+
+        width: 100%;
+    }
+
+    .app-timer-weather{
+
+        width: 100%;
+    }
 }
